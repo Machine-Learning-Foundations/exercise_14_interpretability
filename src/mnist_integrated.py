@@ -226,15 +226,15 @@ if __name__ == "__main__":
         output_digit=0,
         steps_m=300,
     )
-    print("IG for digit 1")
     plt.imshow(ig_0)
     plt.savefig("integrated_gradients_0.jpg")
-    ig_1 = integrate_gradients(
+    print("IG for digit 6")
+    ig_6 = integrate_gradients(
         cnn,
         torch.tensor(img_data_test[:400]).type(torch.float32),
         output_digit=1,
         steps_m=300,
     )
-    plt.imshow(ig_1)
-    plt.savefig("integrated_gradients_1.jpg")
+    plt.imshow(ig_6)
+    plt.savefig("integrated_gradients_6.jpg")
     print("stop")
