@@ -42,23 +42,9 @@ if __name__ == "__main__":
 
     def forward_pass(x):
         """Make single forward pass."""
-        out = net(x)
-        return out[0, neuron]
+        # TODO: Compute and return the activation value of a single neuron.
+        return 0.
 
     get_grads = grad(forward_pass)
 
-    x = torch.ones([1, 1, 28, 28])
-
-    grads = []
-    for _i in range(10):
-        x = (x - torch.mean(x)) / torch.std(x + 1e-5)
-        grad_vals = get_grads(x)
-        x = x + 0.1 * grad_vals
-        grads.append(grad_vals)
-        print(forward_pass(x).detach().item())
-
-    mean_grad = torch.mean(torch.stack(grads, 0), 0)
-
-    plt.imshow(x[0, 0, :, :].detach().numpy())
-    plt.title("Input maxizing the " + str(neuron) + "- neuron")
-    plt.savefig("input_opt.jpg")
+    # TODO: Optimize an input to maximize that output.
