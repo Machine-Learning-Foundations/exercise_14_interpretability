@@ -87,7 +87,8 @@ def eval_step(net, loss, img, labels):
 
 def transform(image_data):
     """Transform image data."""
-    return np.log(np.abs(np.fft.fft2(image_data, axes=(-3, -2))) + 1e-12)
+    # TODO: Implement the function given in the readme
+    return np.zeros_like(image_data)
 
 
 if __name__ == "__main__":
@@ -248,22 +249,8 @@ if __name__ == "__main__":
         plt.colorbar()
         plt.savefig("mean_freq_difference.jpg")
 
-        weight_ffhq = np.mean(
-            np.reshape(net.dense.weight[0, :].detach().cpu().numpy(), (3, 128, 128)), 0
-        )
-        weight_style = np.mean(
-            np.reshape(net.dense.weight[1, :].detach().cpu().numpy(), (3, 128, 128)), 0
-        )
-
-        plt.subplot(1, 2, 1)
-        plt.title("Real classifier weights")
-        plt.imshow(weight_ffhq, vmin=np.min(weight_ffhq), vmax=np.max(weight_ffhq))
-        plt.subplot(1, 2, 2)
-        plt.title("Fake classifier weights")
-        plt.imshow(weight_style, vmin=np.min(weight_ffhq), vmax=np.max(weight_ffhq))
-        plt.colorbar()
-
-        plt.savefig("classifier_weights.jpg")
+        # TODO: Visualize the weight array `net.dense.weight`.
+        # By reshaping and plotting the weight matrix.
 
     if type(net) is CNN:
         import matplotlib.pyplot as plt

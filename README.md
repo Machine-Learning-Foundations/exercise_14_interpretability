@@ -7,13 +7,9 @@ Open the `src/input_opt.py` file. The network `./data/weights`.pkl` contains net
 \max_\mathbf{x} y_i = f(\mathbf{x}, \theta) .
 ```
 
-Use `jax.value_and_grad` to find the gradients of the network input $\mathbf{x}$.
-Start with a `jax.random.uniform` network input of shape `[1, 28, 28, 1]` and 
-iteratively optimize it. Execute your script with `python src/input_opt.py`.
-
-Solution:
-
-![cnn ig MNIST 0](./figures/x_opt.png)
+Use `torch.func.grad` to find the gradients of the network input $\mathbf{x}$.
+Start with a network input of shape `[1, 1, 28, 28]`. Compare a random initialization
+to starting from an array filled with ones, iteratively optimize it. Execute your script with `python src/input_opt.py`.
 
 # Task 2 Integrated Gradients (Optional):
 
@@ -30,9 +26,6 @@ Finally, m denotes the number of summation steps from the black baseline image t
 
 Follow the todos in `./src/mnist_integrated.py` and then run `scripts/integrated_gradients.slurm`.
 
-Solution:
-
-![cnn ig MNIST 0](./figures/IG_MNIST_0.png)
 
 
 # Task 3 Deepfake detection (Optional):
@@ -72,19 +65,11 @@ Compute log-scaled frequency domain representations of samples from both sources
 
 Above `h`, `w` and `c` denote image height, width and columns. `Log` denotes the natural logarithm, and bars denote the absolute value. A small epsilon is added for numerical stability.
 
-Use the numpy functions `jnp.log`, `jnp.abs`, `jnp.fft.fft2`. By default, `fft2` transforms the last two axes. The last axis contains the color channels in this case. We are looking to transform the rows and columns.
+Use the numpy functions `np.log`, `np.abs`, `np.fft.fft2`. By default, `fft2` transforms the last two axes. The last axis contains the color channels in this case. We are looking to transform the rows and columns.
 
 Plot mean spectra for real and fake images as well as their difference over the entire validation or test sets. For that complete the TODOs in `src/deepfake_interpretation.py` and run the script `scripts/train.slurm`.
 
-Solution:
-
-![spectral analysis 2](./figures/log_mean_fft_2_diff.png)
-
-![spectral analysis](./figures/log_mean_fft_2_1d.png)
 
 ## 3.3 Training and interpreting a linear classifier
-Train a linear classifier consisting of a single `nn.Dense`-layer on the log-scaled Fourier coefficients using Flax. Plot the result. What do you see?
+Train a linear classifier consisting of a single `nn.Linear`-layer on the log-scaled Fourier coefficients using Torch. Plot the result. What do you see?
 
-Solution:
-
-![linear weights](./figures/classifier_comparison.png)
