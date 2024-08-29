@@ -17,7 +17,7 @@ to starting from an array filled with ones, iteratively optimize it. Execute you
 Reuse your MNIST digit recognition code. Implement IG as discussed in the lecture. Recall the equation
 
 ```math
-\text{IntegratedGrads}_i(x) = (x_i - x_i') \cdot \sum_{k=1}^m \frac{\partial F (x' + \frac{k}{m} \cdot (x - x'))}{\partial x_i}.
+\text{IntegratedGrads}_i(x) = (x_i - x_i') \cdot \frac{1}{m} \sum_{k=1}^m \frac{\partial F (x' + \frac{k}{m} \cdot (x - x'))}{\partial x_i}.
 ```
 
 F partial xi denotes the gradients with respect to the input color-channels i.
