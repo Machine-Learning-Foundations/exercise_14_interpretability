@@ -1,4 +1,4 @@
-# Exercise: Interpretable machine learning in python
+# Exercise: Interpretable machine learning
 
 # Task 1: Input optimization.
 Open the `src/input_opt.py` file. The network `./data/weights.pth` contains network weights pre-trained on MNIST. Turn the network optimization problem around, and find an input that makes a particular output neuron extremely happy. In other words maximize,
