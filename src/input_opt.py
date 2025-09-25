@@ -33,7 +33,7 @@ class CNN(nn.Module):
 
 
 if __name__ == "__main__":
-    with open("weights.pth", "rb") as file:
+    with open("./data/weights.pth", "rb") as file:
         weights = torch.load(file)
 
     net = CNN()
