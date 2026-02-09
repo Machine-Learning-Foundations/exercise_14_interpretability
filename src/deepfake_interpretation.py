@@ -87,7 +87,7 @@ def eval_step(net, loss, img, labels):
 
 def transform(image_data):
     """Transform image data."""
-    # TODO: Implement the function given in the readme
+    # 3.2.1 TODO: Implement the function given in the readme
     return np.zeros_like(image_data)
 
 
@@ -249,7 +249,7 @@ if __name__ == "__main__":
         plt.colorbar()
         plt.savefig("mean_freq_difference.jpg")
 
-        # TODO: Visualize the weight array `net.dense.weight`.
+        # 3.2.3 TODO: Visualize the weight array `net.dense.weight`.
         # By reshaping and plotting the weight matrix.
 
     if type(net) is CNN:

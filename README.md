@@ -29,9 +29,9 @@ Reuse your MNIST digit recognition code. Implement IG as discussed in the lectur
 \text{IntegratedGrads}_i(x) = (x_i - x_i') \cdot \frac{1}{m} \sum_{k=1}^m \frac{\partial F (x' + \frac{k}{m} \cdot (x - x'))}{\partial x_i}.
 ```
 
-F partial xi denotes the gradients with respect to the input color-channels i.
-x prime denotes a baseline black image. And x symbolizes an input we are interested in.
-Finally, m denotes the number of summation steps from the black baseline image to the interesting input.
+$\frac{\partial F}{\partial x_i}$ denotes the gradients with respect to the input color-channels $i$.
+$x'$ denotes a baseline black image. And $x$ symbolizes an input we are interested in.
+Finally, $m$ denotes the number of summation steps from the black baseline image to the interesting input.
 
 Follow the todos in `./src/mnist_integrated.py` and then run `scripts/integrated_gradients.slurm`.
 
@@ -66,19 +66,16 @@ The desired outcome is to have a folder called `ffhq_style_gan` in the project d
 The `load_folder` function from the `util` module loads both real and fake data.
 Code to load the data is already present in the `deepfake_interpretation.py` file.
 
-Compute log-scaled frequency domain representations of samples from both sources via
+1. Implement the `transform` function to compute log-scaled frequency domain representations of samples from both sources via
 
-``` math
-\mathbf{F}_I =  \log_e (| \mathcal{F}_{2d}(\mathbf(I)) | + \epsilon ), \text{ with } \mathbf{I} \in \mathbb{R}^{h,w,c}, \epsilon \approx 0 .
-```
+   ``` math
+   \mathbf{F}_I =  \log_e (| \mathcal{F}_{2d}(\mathbf(I)) | + \epsilon ), \text{ with } \mathbf{I} \in \mathbb{R}^{h,w,c}, \epsilon \approx 0 .
+   ```
 
-Above `h`, `w` and `c` denote image height, width and columns. `Log` denotes the natural logarithm, and bars denote the absolute value. A small epsilon is added for numerical stability.
+   Above `h`, `w` and `c` denote image height, width and columns. `Log` denotes the natural logarithm, and bars denote the absolute value. A small epsilon is added for numerical stability.
 
-Use the numpy functions `np.log`, `np.abs`, `np.fft.fft2`. By default, `fft2` transforms the last two axes. The last axis contains the color channels in this case. We are looking to transform the rows and columns.
+   Use the numpy functions `np.log`, `np.abs`, `np.fft.fft2`. By default, `fft2` transforms the last two axes. The last axis contains the color channels in this case. We are looking to transform the rows and columns.
 
-Plot mean spectra for real and fake images as well as their difference over the entire validation or test sets. For that complete the TODOs in `src/deepfake_interpretation.py` and run the script `scripts/train.slurm`.
+2. Plot mean spectra for real and fake images as well as their difference over the entire validation or test sets. For that run the script `scripts/train.slurm`.
 
-
-## 3.3 Training and interpreting a linear classifier
-Train a linear classifier consisting of a single `nn.Linear`-layer on the log-scaled Fourier coefficients using Torch. Plot the result. What do you see?
-
+3. `scripts/train.slurm` also trains a linear classifier (consisting of a single `nn.Linear`-layer) to distinguish real from fake images on the log-scaled Fourier coefficients. We want to visualize the weights of the trained classifier. For that go to `src/deepfake_interpretation.py` and implement the TODO at the end of the file. What do you see?
