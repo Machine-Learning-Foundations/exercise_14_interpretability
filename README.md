@@ -1,15 +1,24 @@
 # Exercise: Interpretable machine learning
 
 # Task 1: Input optimization.
-Open the `src/input_opt.py` file. The network `./data/weights.pth` contains network weights pre-trained on MNIST. Turn the network optimization problem around, and find an input that makes a particular output neuron extremely happy. In other words maximize,
+Open `src/input_opt.py`. In this exercise we will turn the network optimization problem around. Instead of updating weights to minimize loss, we will keep the weights fixed and update the input image to maximize the activation of a specific output neuron.
 
+The network `./data/weights.pth` contains network weights pre-trained on MNIST. We want to generate an image $\mathbf{x}$ that the network strongly believes shows a specific digit.
+
+Mathematically, we want to maximize:
 ```math
 \max_\mathbf{x} y_i = f(\mathbf{x}, \theta) .
 ```
+where $f$ is the neural network function, $\mathbf{x}$ is the input image, $\theta$ are the fixed weights of the network, and $y_i$ is the output of the target neuron corresponding to the digit we want to visualize.
 
-Use `torch.func.grad` to find the gradients of the network input $\mathbf{x}$.
-Start with a network input of shape `[1, 1, 28, 28]`. Compare a random initialization
-to starting from an array filled with ones, iteratively optimize it. Execute your script with `python src/input_opt.py`.
+
+1. Complete `forward_pass`: Implement the function to return the scalar output of the target neuron.
+
+The gradients are computed using `torch.func.grad`. Start with a network input image $\mathbf{x}$ of shape `[1, 1, 28, 28]`.
+
+2. Write an optimization loop to iteratively update the input image $\mathbf{x}$ based on the computed gradients.
+
+3. Compare and visualize the results of starting with a random noise image versus starting with a image filled with ones.
 
 # Task 2 Integrated Gradients (Optional):
 

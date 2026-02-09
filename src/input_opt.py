@@ -38,13 +38,16 @@ if __name__ == "__main__":
 
     net = CNN()
     net.load_state_dict(weights)
-    neuron = 3
+    neuron = 3  # Target neuron index
 
     def forward_pass(x):
         """Make single forward pass."""
-        # TODO: Compute and return the activation value of a single neuron.
-        return 0.
+        # 1.1 TODO: Compute and return the activation value of a single neuron.
+        return 0.0
 
     get_grads = grad(forward_pass)
 
-    # TODO: Optimize an input to maximize that output.
+    # 1.2 TODO: Write an optimization loop to optimize an input image to maximize the output of the target neuron.
+
+    # 1.3 TODO: Plot the optimized input image.
+    # Compare the results from a random initialization and an initialization with ones.
