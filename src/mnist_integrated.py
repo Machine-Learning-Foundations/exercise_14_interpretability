@@ -115,20 +115,20 @@ def integrate_gradients(net, test_images, output_digit, steps_m=300):
     g_list = []
     for test_image_x in tqdm(test_images, desc="Integrating Gradients"):
 
-        # TODO: create a list for the gradients.
+        # list for the gradients
         step_g_list = []
-        
+
         # TODO: create a black reference image via `zeros_like`` .
-        
+
         # TODO: Loop over the integration steps.
         for current_step_k in range(steps_m):
             pass
             # TODO: compute the input to F from equation 5 in the slides.
-        
+
             # TODO: define a forward pass for torch.func.grad
-        
+
             # TODO: use torch.grad to find the gradient with repsect to the input image.
-            
+
             # TODO: append the gradient to your list
 
         # TODO: Return the sum of the of the list elements.
